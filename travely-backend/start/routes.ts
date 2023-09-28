@@ -23,3 +23,16 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async () => {
   return { hello: 'world' }
 })
+
+Route.post('login', async ({ auth, request, response }) => {
+  const email = request.input('email')
+  const password = request.input('password')
+
+  try {
+    await auth.use('web').attempt(email, password)
+  } catch (error) {
+    return response.badRequest('Invalid credentials')
+  }
+})
+
+Route.post('/user', 'UsersController.create')
