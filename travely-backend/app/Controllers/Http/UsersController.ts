@@ -7,8 +7,7 @@ import User from 'App/Models/User'
 export default class UsersController {
   public async index({}: HttpContextContract) {}
 
-  public async create ({ request, response }: HttpContextContract) {
-
+  public async create({ request, response }: HttpContextContract) {
     const payload = await request.validate(CreateUser)
 
     // await Database.transaction(async (trx) => {
@@ -23,9 +22,9 @@ export default class UsersController {
 
     await Database.transaction(async (trx) => {
       const user = new User()
-      user.email = payload.email;
-      user.password = payload.password;
-      user.rememberMeToken = payload.rememberMeToken || null;
+      user.email = payload.email
+      user.password = payload.password
+      user.rememberMeToken = payload.rememberMeToken || null
 
       user.useTransaction(trx)
       await user.save()
