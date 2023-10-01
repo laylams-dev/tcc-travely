@@ -24,7 +24,7 @@ export default class UsersController {
       const user = new User()
       user.email = payload.email
       user.password = payload.password
-      user.rememberMeToken = payload.rememberMeToken || null
+      user.rememberMeToken = payload.rememberMe || null
 
       user.useTransaction(trx)
       await user.save()

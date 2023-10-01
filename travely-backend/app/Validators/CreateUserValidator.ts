@@ -16,7 +16,7 @@ export default class CreateUserValidator {
       }),
     ]),
     password: schema.string({ trim: true }, [rules.required(), rules.maxLength(180)]),
-    rememberMeToken: schema.string.optional(),
+    rememberMe: schema.string.optional(),
   })
 
   public messages: CustomMessages = {}
