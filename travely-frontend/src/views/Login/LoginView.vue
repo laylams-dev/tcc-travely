@@ -1,21 +1,14 @@
 <template>
   <the-layout :hasSideMenu="false">
     <div class="login-content">
-      <a-typography-title>
-        <span class="login-content-title">
-          <LoginOutlined class="login-content-title-icon" />
-          <span>Fazer login</span>
-        </span>
-      </a-typography-title>
+      <a-typography-title> Fazer login </a-typography-title>
       <a-card class="login-content-card">
         <a-form
           :model="formState"
           :rules="rules"
           layout="vertical"
           name="travely-login"
-          scrollToFirstError
-          @finish="submitForm"
-          @finishFailed="onFinishFailed"
+          scroll-to-first-error
           @validate="(name: FormField, isValid: boolean) => updateFormValidity(name, isValid)"
         >
           <a-form-item label="E-mail" name="email">
@@ -48,6 +41,7 @@
               size="large"
               html-type="submit"
               class="login-form-button"
+              @click="submitForm"
             >
               Log in
             </a-button>
@@ -61,21 +55,19 @@
 </template>
 
 <script setup lang="ts">
-import { LoginOutlined } from '@ant-design/icons-vue'
-import TheLayout from '@/components/Layout/TheLayout.vue'
-import { reactive, computed } from 'vue'
+import { computed, reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { message } from 'ant-design-vue'
 import { MailOutlined, LockOutlined } from '@ant-design/icons-vue'
-import type { Rule } from 'ant-design-vue/es/form'
+import TheLayout from '@/components/Layout/TheLayout.vue'
+import UserService from '@/services/UserService'
 
-interface FormState {
-  email: string
-  password: string
-  rememberMe: boolean
-}
+import type { Rule } from 'ant-design-vue/es/form'
+import { type LoginRequest } from '@/types/UserTypes.d'
 
 type FormField = 'email' | 'password'
 
-const formState = reactive<FormState>({
+const formState = reactive<LoginRequest>({
   email: '',
   password: '',
   rememberMe: false
@@ -99,12 +91,15 @@ function updateFormValidity(name: FormField, isValid: boolean): void {
   formValid[name] = isValid
 }
 
-function submitForm(values: any): void {
-  console.log('Success:', values)
-}
+const router = useRouter()
 
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo)
+async function submitForm(): Promise<void> {
+  try {
+    await UserService.login(formState)
+    router.push({ name: 'home' })
+  } catch (err) {
+    message.error('E-mail e senha inválidos', 5)
+  }
 }
 
 const disabled = computed(() => {
@@ -112,25 +107,4 @@ const disabled = computed(() => {
 })
 </script>
 
-<style scoped>
-.login-content {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  max-width: 50vw;
-  margin: 0 auto;
-}
-
-.login-content-title {
-  display: inline-flex;
-}
-
-.login-content-title-icon {
-  margin-right: 0.75rem;
-  font-size: 1.5rem;
-}
-
-.login-form-button {
-  width: 100%;
-}
-</style>
+<style scoped src="./LoginView.css" />
