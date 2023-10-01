@@ -38,32 +38,4 @@ defineProps({
 })
 </script>
 
-<style scoped>
-.travely-layout {
-  height: 100%;
-}
-.travely-footer {
-  text-align: center;
-}
-
-.travely-header-logo {
-  display: flex;
-  width: fit-content;
-  height: 100%;
-  align-items: center;
-}
-
-.travely-header-logo-img {
-  height: 3.2rem;
-  cursor: pointer;
-}
-
-.travely-breadcrumb {
-  margin: 1rem 0;
-}
-
-.travely-content {
-  padding: 0 1rem 1rem 1rem;
-  margin-top: 3rem;
-}
-</style>
+<style scoped src="./TheLayout.css" />
