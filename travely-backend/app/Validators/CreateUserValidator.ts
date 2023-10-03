@@ -15,8 +15,17 @@ export default class CreateUserValidator {
         caseInsensitive: true,
       }),
     ]),
-    password: schema.string({ trim: true }, [rules.required(), rules.maxLength(180)]),
-    rememberMe: schema.string.optional(),
+    password: schema.string({ trim: true }, [
+      rules.required(),
+      rules.minLength(8),
+      rules.maxLength(20),
+    ]),
+    checkPassword: schema.string({ trim: true }, [
+      rules.required(),
+      rules.minLength(8),
+      rules.maxLength(20),
+    ]),
+    agreeWithTerms: schema.boolean(),
   })
 
   public messages: CustomMessages = {}

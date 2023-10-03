@@ -27,9 +27,10 @@ Route.get('/', async () => {
 Route.post('login', async ({ auth, request, response }) => {
   const email = request.input('email')
   const password = request.input('password')
+  const rememberMe = !!request.input('rememberMeToken')
 
   try {
-    await auth.use('web').attempt(email, password)
+    await auth.use('web').attempt(email, password, rememberMe)
   } catch (error) {
     return response.badRequest('Invalid credentials')
   }

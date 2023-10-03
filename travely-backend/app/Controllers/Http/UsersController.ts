@@ -1,6 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
-// import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import CreateUser from 'App/Validators/CreateUserValidator'
 import User from 'App/Models/User'
 
@@ -8,34 +7,34 @@ export default class UsersController {
   public async index({}: HttpContextContract) {}
 
   public async create({ request, response }: HttpContextContract) {
-    const payload = await request.validate(CreateUser)
+    try {
+      const payload = await request.validate(CreateUser)
 
-    // await Database.transaction(async (trx) => {
-    //   await trx
-    //     .insertQuery()
-    //     .table('users')
-    //     .insert({
-    //       ...payload,
-    //       role: 'user',
-    //     })
-    // })
+      if (payload.password !== payload.checkPassword) {
+        throw new Error('As senhas devem ser idênticas')
+      }
 
-    await Database.transaction(async (trx) => {
-      const user = new User()
-      user.email = payload.email
-      user.password = payload.password
-      user.rememberMeToken = payload.rememberMe || null
+      if (!payload.agreeWithTerms) {
+        throw new Error('Por favor, concorde com os termos de uso')
+      }
 
-      user.useTransaction(trx)
-      await user.save()
-    })
+      if (!/[0-9]/.test(payload.password) || !/[A-Z]/.test(payload.password)) {
+        throw new Error()
+      }
 
-    response.created()
-    // const data = request.only(["email", "password", "remember_me_token"])
+      await Database.transaction(async (trx) => {
+        const user = new User()
+        user.email = payload.email
+        user.password = payload.password
 
-    // const user = await User.create(data)
+        user.useTransaction(trx)
+        await user.save()
+      })
 
-    // return user
+      response.created()
+    } catch (err) {
+      response.badRequest(err)
+    }
   }
 
   public async store({}: HttpContextContract) {}
