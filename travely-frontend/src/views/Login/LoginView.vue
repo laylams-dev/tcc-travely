@@ -19,7 +19,7 @@
             </a-input>
           </a-form-item>
 
-          <a-form-item label="Password" name="password">
+          <a-form-item label="Senha" name="password">
             <a-input-password v-model:value="formState.password" size="large">
               <template #prefix>
                 <LockOutlined />
@@ -29,7 +29,7 @@
 
           <a-form-item>
             <a-form-item name="rememberMe" no-style>
-              <a-checkbox v-model:checked="formState.rememberMe">Remember me</a-checkbox>
+              <a-checkbox v-model:checked="formState.rememberMe">Manter-me conectado</a-checkbox>
             </a-form-item>
             <!-- <a class="login-form-forgot" href="">Esqueceu a senha</a> -->
           </a-form-item>
@@ -37,16 +37,19 @@
           <a-form-item>
             <a-button
               :disabled="disabled"
-              type="primary"
-              size="large"
+              class="login-form-buttons"
               html-type="submit"
-              class="login-form-button"
+              size="large"
+              type="primary"
               @click="submitForm"
             >
               Log in
             </a-button>
-            <!-- Ou
-            <a href="">Criar uma conta</a> -->
+            <a-divider>Ou</a-divider>
+            <!-- Ou -->
+            <a-button class="login-form-buttons" size="large" @click="goToCreateAccount">
+              Criar uma conta
+            </a-button>
           </a-form-item>
         </a-form>
       </a-card>
@@ -105,6 +108,10 @@ async function submitForm(): Promise<void> {
 const disabled = computed(() => {
   return !(formState.email && formState.password) || !formValid.email || !formValid.password
 })
+
+function goToCreateAccount(): void {
+  router.push({ name: 'createAccount' })
+}
 </script>
 
 <style scoped src="./LoginView.css" />
