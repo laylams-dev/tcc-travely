@@ -1,6 +1,12 @@
 .travely-layout {
   height: 100%;
 }
+
+.travely-layout-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .travely-footer {
   text-align: center;
 }

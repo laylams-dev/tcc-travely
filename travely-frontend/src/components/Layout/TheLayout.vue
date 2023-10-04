@@ -1,6 +1,6 @@
 <template>
   <a-layout class="travely-layout">
-    <a-layout-header>
+    <a-layout-header class="travely-layout-header">
       <a class="travely-header-logo" href="/">
         <img
           class="travely-header-logo-img"
@@ -8,6 +8,32 @@
           alt="Logo da empresa Travely, que se parece com um avião decolando"
         />
       </a>
+      <div v-if="userIsLogged">
+        <a-dropdown>
+          <a placement="bottomRight" arrow>
+            {{ user.$state.email }}
+            <DownOutlined />
+          </a>
+          <template #overlay>
+            <a-menu>
+              <!-- <a-menu-item>
+                Minha conta
+              </a-menu-item>
+              <a-menu-item>
+                Minhas reservas
+              </a-menu-item> -->
+              <a-menu-item @click="logout"> <LogoutOutlined /> Logout </a-menu-item>
+            </a-menu>
+          </template>
+        </a-dropdown>
+      </div>
+      <a-space size="small" v-else>
+        <a-button v-if="showLoginButtom" type="primary" @click="goToLogin">Fazer login</a-button>
+        <span v-if="showLoginButtom && showCreateAccountButtom">ou</span>
+        <a-button v-if="showCreateAccountButtom" type="primary" @click="goToCreateAccount">
+          Criar conta
+        </a-button>
+      </a-space>
     </a-layout-header>
     <a-breadcrumb class="travely-breadcrumb" v-if="breadcrumb.length > 0">
       <a-breadcrumb-item v-for="item in breadcrumb" :key="item.id">
@@ -25,7 +51,12 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { message } from 'ant-design-vue'
+import { DownOutlined, LogoutOutlined } from '@ant-design/icons-vue'
 import TravelyLogo from '@/assets/public/travely-logo.png'
+import { useUserStore } from '@/stores/userStore'
 
 interface Breadcrumb {
   title: string
@@ -36,6 +67,53 @@ defineProps({
   breadcrumb: { type: Array<Breadcrumb>, default: [] }
   // hasSideMenu: { type: Boolean, default: true }
 })
+
+const user = useUserStore()
+
+const userIsLogged = computed(() => {
+  return user.$state.id !== 0
+})
+
+const router = useRouter()
+const route = useRoute()
+
+const showLoginButtom = computed(() => {
+  return route.name !== 'login'
+})
+
+const showCreateAccountButtom = computed(() => {
+  return route.name !== 'createAccount'
+})
+
+const goToLogin = () => {
+  router.push({ name: 'login' })
+}
+
+const goToCreateAccount = () => {
+  router.push({ name: 'createAccount' })
+}
+
+const logout = async () => {
+  try {
+    await user.logout()
+    user.updateFullUser({
+      created_at: '',
+      email: '',
+      id: 0,
+      role: 'user'
+    })
+  } catch {
+    user.updateFullUser({
+      created_at: '',
+      email: '',
+      id: 0,
+      role: 'user'
+    })
+  } finally {
+    message.success('Você foi deslogado com sucesso!')
+    router.push({ name: 'home' })
+  }
+}
 </script>
 
 <style scoped src="./TheLayout.css" />

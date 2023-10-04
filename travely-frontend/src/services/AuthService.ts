@@ -10,6 +10,12 @@ const baseInstance = axios.create({
 const UserService = {
   login(data: LoginRequest) {
     return baseInstance.post('login', data)
+  },
+  logout() {
+    return baseInstance.post('logout')
+  },
+  checkIfUserIsLogged() {
+    return baseInstance.get('auth')
   }
 }
 

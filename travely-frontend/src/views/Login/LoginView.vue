@@ -64,6 +64,7 @@ import { message } from 'ant-design-vue'
 import { MailOutlined, LockOutlined } from '@ant-design/icons-vue'
 import TheLayout from '@/components/Layout/TheLayout.vue'
 import AuthService from '@/services/AuthService'
+import { useUserStore } from '@/stores/userStore'
 
 import type { Rule } from 'ant-design-vue/es/form'
 import { type LoginRequest } from '@/types/AuthTypes.d'
@@ -95,10 +96,12 @@ function updateFormValidity(name: FormField, isValid: boolean): void {
 }
 
 const router = useRouter()
+const user = useUserStore()
 
 async function submitForm(): Promise<void> {
   try {
-    await AuthService.login(formState)
+    const { data } = await AuthService.login(formState)
+    user.updateFullUser(data)
     router.push({ name: 'home' })
   } catch (err) {
     message.error('E-mail e senha inválidos', 5)
