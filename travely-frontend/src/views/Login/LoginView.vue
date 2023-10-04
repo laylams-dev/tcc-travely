@@ -63,10 +63,10 @@ import { useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
 import { MailOutlined, LockOutlined } from '@ant-design/icons-vue'
 import TheLayout from '@/components/Layout/TheLayout.vue'
-import UserService from '@/services/UserService'
+import AuthService from '@/services/AuthService'
 
 import type { Rule } from 'ant-design-vue/es/form'
-import { type LoginRequest } from '@/types/UserTypes.d'
+import { type LoginRequest } from '@/types/AuthTypes.d'
 
 type FormField = 'email' | 'password'
 
@@ -98,7 +98,7 @@ const router = useRouter()
 
 async function submitForm(): Promise<void> {
   try {
-    await UserService.login(formState)
+    await AuthService.login(formState)
     router.push({ name: 'home' })
   } catch (err) {
     message.error('E-mail e senha inválidos', 5)

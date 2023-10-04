@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { type CreateAccountRequest } from '@/types/UserTypes.d'
+import { type LoginRequest } from '@/types/AuthTypes.d'
 
 const baseInstance = axios.create({
   baseURL: 'http://127.0.0.1:3333',
@@ -8,8 +8,8 @@ const baseInstance = axios.create({
 })
 
 const UserService = {
-  createAccount(data: CreateAccountRequest) {
-    return baseInstance.post('/user', data)
+  login(data: LoginRequest) {
+    return baseInstance.post('login', data)
   }
 }
 
