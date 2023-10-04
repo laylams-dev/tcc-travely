@@ -24,16 +24,8 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.post('login', async ({ auth, request, response }) => {
-  const email = request.input('email')
-  const password = request.input('password')
-  const rememberMe = !!request.input('rememberMeToken')
-
-  try {
-    await auth.use('web').attempt(email, password, rememberMe)
-  } catch (error) {
-    return response.badRequest('Invalid credentials')
-  }
-})
+Route.post('login', 'AuthController.login')
+Route.get('/auth', 'AuthController.chechIfIsLogged')
+Route.post('/logout', 'AuthController.logout')
 
 Route.post('/user', 'UsersController.create')
