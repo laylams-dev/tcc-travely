@@ -71,7 +71,7 @@
           <a-button
             :disabled="disableCreateAccount"
             :loading="creatingAccount"
-            class="login-form-buttons"
+            class="create-account-form-button"
             html-type="submit"
             size="large"
             type="primary"
