@@ -8,31 +8,33 @@
           alt="Logo da empresa Travely, que se parece com um avião decolando"
         />
       </a>
-      <div v-if="userIsLogged">
-        <a-dropdown>
-          <a placement="bottomRight" arrow>
-            {{ user.$state.email }}
-            <DownOutlined />
-          </a>
-          <template #overlay>
-            <a-menu>
-              <!-- <a-menu-item>
-                Minha conta
-              </a-menu-item>
-              <a-menu-item>
-                Minhas reservas
-              </a-menu-item> -->
-              <a-menu-item @click="logout"> <LogoutOutlined /> Logout </a-menu-item>
-            </a-menu>
-          </template>
-        </a-dropdown>
-      </div>
-      <a-space size="small" v-else>
-        <a-button v-if="showLoginButtom" type="primary" @click="goToLogin">Fazer login</a-button>
-        <span v-if="showLoginButtom && showCreateAccountButtom">ou</span>
-        <a-button v-if="showCreateAccountButtom" type="primary" @click="goToCreateAccount">
-          Criar conta
-        </a-button>
+      <a-space>
+        <theme-switch-button />
+        <div v-if="userIsLogged">
+          <a-dropdown>
+            <a placement="bottomRight" arrow>
+              {{ user.$state.email }}
+              <DownOutlined />
+            </a>
+            <template #overlay>
+              <a-menu>
+                <!-- <a-menu-item>
+                  Minha conta
+                </a-menu-item>
+                <a-menu-item>
+                  Minhas reservas
+                </a-menu-item> -->
+                <a-menu-item @click="logout"> <LogoutOutlined /> Logout </a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown>
+        </div>
+        <a-space size="small" v-else>
+          <a-button v-if="showLoginButtom" type="primary" @click="goToLogin">Fazer login</a-button>
+          <a-button v-if="showCreateAccountButtom" type="primary" @click="goToCreateAccount">
+            Criar conta
+          </a-button>
+        </a-space>
       </a-space>
     </a-layout-header>
     <a-breadcrumb class="travely-breadcrumb" v-if="breadcrumb.length > 0">
@@ -56,6 +58,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
 import { DownOutlined, LogoutOutlined } from '@ant-design/icons-vue'
 import TravelyLogo from '@/assets/public/travely-logo.png'
+import ThemeSwitchButton from '@/components/ThemeSwitchButton/ThemeSwitchButton.vue'
 import { useUserStore } from '@/stores/userStore'
 
 interface Breadcrumb {

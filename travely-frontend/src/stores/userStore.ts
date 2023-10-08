@@ -17,7 +17,8 @@ export const useUserStore = defineStore('user', {
     /** @type { number } */
     id: 0,
     /** @type { '', 'admin' | 'user' } */
-    role: ''
+    role: '',
+    darkTheme: false
   }),
   actions: {
     updateFullUser(user: UserFromBack) {
@@ -44,6 +45,9 @@ export const useUserStore = defineStore('user', {
       } catch {
         return Promise.reject()
       }
+    },
+    toggleTheme(newDarkThemeValue: boolean) {
+      this.darkTheme = newDarkThemeValue
     }
   }
 })
