@@ -29,3 +29,7 @@ Route.get('/auth', 'AuthController.chechIfIsLogged')
 Route.post('/logout', 'AuthController.logout')
 
 Route.post('/user', 'UsersController.create')
+
+Route.get('/rooms/:id', 'RoomsController.show')
+Route.get('/rooms', 'RoomsController.index')
+Route.post('/room', 'RoomsController.create')

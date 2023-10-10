@@ -1,0 +1,34 @@
+import { DateTime } from 'luxon'
+import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+
+export default class Room extends BaseModel {
+  @column({ isPrimary: true })
+  public id: number
+
+  @column()
+  public roomNumber: number
+
+  @column()
+  public capacity: number
+
+  @column()
+  public description?: string
+
+  @column()
+  public isActive: boolean
+
+  @column()
+  public chargePerDay: number
+
+  @column()
+  public hasAirConditioning: boolean
+
+  @column()
+  public hasPrivateBathroom: boolean
+
+  @column.dateTime({ autoCreate: true })
+  public createdAt: DateTime
+
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  public updatedAt: DateTime
+}
