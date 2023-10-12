@@ -42,12 +42,22 @@
         {{ item.title }}
       </a-breadcrumb-item>
     </a-breadcrumb>
-    <a-layout-content class="travely-content">
+    <a-layout-content :class="contentClass">
       <slot />
     </a-layout-content>
     <a-layout-footer class="travely-footer">
       <a-divider />
-      Travely ©2023
+      <a-space size="large">
+        <a
+          href="http://github.com/laylams-dev/tcc-travely"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GithubOutlined />
+          Nosso GitHub
+        </a>
+        <span> Travely ©2022 </span>
+      </a-space>
     </a-layout-footer>
   </a-layout>
 </template>
@@ -56,7 +66,7 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
-import { DownOutlined, LogoutOutlined } from '@ant-design/icons-vue'
+import { DownOutlined, LogoutOutlined, GithubOutlined } from '@ant-design/icons-vue'
 import TravelyLogo from '@/assets/public/travely-logo.png'
 import ThemeSwitchButton from '@/components/ThemeSwitchButton/ThemeSwitchButton.vue'
 import { useUserStore } from '@/stores/userStore'
@@ -66,8 +76,9 @@ interface Breadcrumb {
   id: string
 }
 
-defineProps({
-  breadcrumb: { type: Array<Breadcrumb>, default: [] }
+const props = defineProps({
+  breadcrumb: { type: Array<Breadcrumb>, default: [] },
+  defineWidthOnFlow: { type: Boolean, default: false }
   // hasSideMenu: { type: Boolean, default: true }
 })
 
@@ -117,6 +128,10 @@ const logout = async () => {
     router.push({ name: 'home' })
   }
 }
+
+const contentClass = computed(() => {
+  return props.defineWidthOnFlow ? 'travely-content' : 'travely-content travely-content-size'
+})
 </script>
 
 <style scoped src="./TheLayout.css" />
