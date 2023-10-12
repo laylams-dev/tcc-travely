@@ -115,6 +115,7 @@ import Room2 from '@/assets/public/quarto-2.jpg'
 import Door from '@/assets/public/porta.jpg'
 import Restaurant from '@/assets/public/salao.jpg'
 import TheLayout from '@/components/Layout/TheLayout.vue'
+import { useReservationStore } from '@/stores/reservationStore'
 import { Dayjs } from 'dayjs'
 import dayjs from 'dayjs'
 import ptbr from 'dayjs/locale/pt-br'
@@ -133,15 +134,16 @@ const disableReservationButton = computed(() => {
 })
 
 const router = useRouter()
+const useReservation = useReservationStore()
+
 function goToReservation() {
   if (!disableReservationButton.value) {
+    useReservation.updateQuantity(people.value)
+    useReservation.updateDateFrom(dates.value[0].toString())
+    useReservation.updateDateTo(dates.value[1].toString())
+
     router.push({
-      name: 'reservation',
-      params: {
-        people: people.value,
-        dateFrom: dates.value[0].toString(),
-        dateTo: dates.value[1].toString()
-      }
+      name: 'reservation'
     })
   }
 }

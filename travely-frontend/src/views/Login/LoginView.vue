@@ -59,7 +59,7 @@
 
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
 import { MailOutlined, LockOutlined } from '@ant-design/icons-vue'
 import TheLayout from '@/components/Layout/TheLayout.vue'
@@ -96,13 +96,19 @@ function updateFormValidity(name: FormField, isValid: boolean): void {
 }
 
 const router = useRouter()
+const route = useRoute()
 const user = useUserStore()
 
 async function submitForm(): Promise<void> {
   try {
     const { data } = await AuthService.login(formState)
     user.updateFullUser(data)
-    router.push({ name: 'home' })
+
+    if (route.query.goBackTo) {
+      router.push({ name: route.query.goBackTo as string })
+    } else {
+      router.push({ name: 'home' })
+    }
   } catch (err) {
     message.error('E-mail e senha inválidos', 5)
   }
