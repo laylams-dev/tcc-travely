@@ -43,6 +43,8 @@
             type="primary"
             :icon="h(SearchOutlined)"
             size="large"
+            :disabled="disableReservationButton"
+            @click="goToReservation"
             >Reservar</a-button
           >
         </a-col>
@@ -102,7 +104,8 @@
 </template>
 
 <script setup lang="ts">
-import { h, ref } from 'vue'
+import { computed, h, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { theme } from 'ant-design-vue'
 import { LeftCircleOutlined, RightCircleOutlined, SearchOutlined } from '@ant-design/icons-vue'
 import TravelyLogo from '@/assets/public/travely-logo.png'
@@ -125,6 +128,23 @@ dayjs.locale(ptbr)
 const dates = ref<RangeValue>([dayjs(new Date()), dayjs().add(7, 'day')])
 
 const people = ref(2)
+const disableReservationButton = computed(() => {
+  return people.value === 0 || !dates.value?.[0] || !dates.value?.[1]
+})
+
+const router = useRouter()
+function goToReservation() {
+  if (!disableReservationButton.value) {
+    router.push({
+      name: 'reservation',
+      params: {
+        people: people.value,
+        dateFrom: dates.value[0].toString(),
+        dateTo: dates.value[1].toString()
+      }
+    })
+  }
+}
 </script>
 
 <style scoped src="./HomeView.css" />
