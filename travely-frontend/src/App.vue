@@ -1,6 +1,7 @@
 <template>
   <div class="system-height">
     <a-config-provider
+      :locale="locale"
       :theme="{
         algorithm: currentTheme
       }"
@@ -14,6 +15,7 @@
 import { computed } from 'vue'
 import { RouterView } from 'vue-router'
 import { theme } from 'ant-design-vue'
+import locale from 'ant-design-vue/es/locale/pt_BR'
 import { useUserStore } from '@/stores/userStore'
 
 const user = useUserStore()
