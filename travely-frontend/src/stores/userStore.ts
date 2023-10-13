@@ -5,7 +5,7 @@ interface UserFromBack {
   created_at: string
   email: string
   id: number
-  role: 'admin' | 'user'
+  role: 'ADMIN' | 'USER'
 }
 
 export const useUserStore = defineStore('user', {
@@ -16,13 +16,12 @@ export const useUserStore = defineStore('user', {
     email: '',
     /** @type { number } */
     id: 0,
-    /** @type { '', 'admin' | 'user' } */
+    /** @type { '', 'ADMIN' | 'USER' } */
     role: '',
     darkTheme: false
   }),
   actions: {
     updateFullUser(user: UserFromBack) {
-      console.log('user', user)
       this.createdAt = user.created_at
       this.email = user.email
       this.id = user.id
