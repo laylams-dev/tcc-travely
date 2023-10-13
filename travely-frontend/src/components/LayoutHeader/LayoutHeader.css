@@ -1,0 +1,16 @@
+.travely-layout-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.travely-header-logo {
+  display: flex;
+  width: fit-content;
+  height: 100%;
+  align-items: center;
+}
+
+.travely-header-logo-img {
+  height: 3.2rem;
+  cursor: pointer;
+}

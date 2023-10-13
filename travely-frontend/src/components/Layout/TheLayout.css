@@ -1,26 +1,10 @@
 .travely-layout {
   height: 100%;
-}
-
-.travely-layout-header {
-  display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 .travely-footer {
   text-align: center;
-}
-
-.travely-header-logo {
-  display: flex;
-  width: fit-content;
-  height: 100%;
-  align-items: center;
-}
-
-.travely-header-logo-img {
-  height: 3.2rem;
-  cursor: pointer;
 }
 
 .travely-breadcrumb {
