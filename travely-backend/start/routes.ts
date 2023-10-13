@@ -33,3 +33,8 @@ Route.post('/user', 'UsersController.create')
 Route.get('/rooms/:id', 'RoomsController.show')
 Route.get('/rooms', 'RoomsController.index')
 Route.post('/room', 'RoomsController.create')
+
+Route.get('/beds', 'BedsController.index').middleware('AdminAuth')
+Route.post('/bed', 'BedsController.create').middleware('AdminAuth')
+Route.patch('/bed/:id', 'BedsController.update').middleware('AdminAuth')
+Route.get('/bed/:id', 'BedsController.show').middleware('AdminAuth')
