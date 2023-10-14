@@ -7,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
       table.string('name').notNullable()
-      table.string('capacity').notNullable()
+      table.tinyint('capacity').unsigned().notNullable()
       table.text('description')
       table.boolean('is_active').defaultTo(true)
       table.decimal('charge_per_day', 7, 2).unsigned().notNullable()
