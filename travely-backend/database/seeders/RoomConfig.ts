@@ -5,6 +5,13 @@ export default class extends BaseSeeder {
   public async run() {
     await RoomConfig.createMany([
       {
+        cradle: 0,
+        doubleBed: 0,
+        kingBed: 0,
+        queenBed: 0,
+        singleBed: 1,
+      },
+      {
         cradle: 1,
         doubleBed: 0,
         kingBed: 0,
