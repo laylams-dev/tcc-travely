@@ -43,3 +43,8 @@ Route.patch('/roomModel/:id/toggleActive', 'RoomModelsController.toggleRoomActiv
   'AdminAuth'
 )
 Route.patch('/roomModel/:id', 'RoomModelsController.update').middleware('AdminAuth')
+
+Route.get('/roomModelConfigs', 'RoomModelConfigsController.index')
+Route.post('/roomModelConfig', 'RoomModelConfigsController.create').middleware('AdminAuth')
+Route.get('/roomModelConfig/:id', 'RoomModelConfigsController.show')
+Route.patch('/roomModelConfig/:id', 'RoomModelConfigsController.update').middleware('AdminAuth')
