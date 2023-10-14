@@ -20,10 +20,6 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
-
 Route.post('login', 'AuthController.login')
 Route.get('/auth', 'AuthController.chechIfIsLogged')
 Route.post('/logout', 'AuthController.logout')
@@ -34,7 +30,7 @@ Route.get('/rooms/:id', 'RoomsController.show')
 Route.get('/rooms', 'RoomsController.index')
 Route.post('/room', 'RoomsController.create')
 
-Route.get('/beds', 'BedsController.index').middleware('AdminAuth')
-Route.post('/bed', 'BedsController.create').middleware('AdminAuth')
-Route.patch('/bed/:id', 'BedsController.update').middleware('AdminAuth')
-Route.get('/bed/:id', 'BedsController.show').middleware('AdminAuth')
+Route.get('/bedConfigs', 'RoomConfigsController.index').middleware('AdminAuth')
+Route.post('/bedConfig', 'RoomConfigsController.create').middleware('AdminAuth')
+Route.patch('/bedConfig/:id', 'RoomConfigsController.update').middleware('AdminAuth')
+Route.get('/bedConfig/:id', 'RoomConfigsController.show').middleware('AdminAuth')
