@@ -44,9 +44,15 @@ Route.post('/roomModelConfig', 'RoomModelConfigsController.create').middleware('
 Route.get('/roomModelConfigs', 'RoomModelConfigsController.index')
 Route.get('/roomModelConfig/:id', 'RoomModelConfigsController.show')
 Route.patch('/roomModelConfig/:id', 'RoomModelConfigsController.update').middleware('AdminAuth')
+Route.get('/roomModels/checkRoomDisponibility', 'RoomModelsController.getRoomsByModel')
 
 Route.post('/room', 'RoomsController.create').middleware('AdminAuth')
 Route.get('/rooms', 'RoomsController.index')
 Route.get('/room/:id', 'RoomsController.show')
 Route.patch('/room/:id', 'RoomsController.update').middleware('AdminAuth')
 Route.delete('/room/:id', 'RoomsController.delete').middleware('AdminAuth')
+
+Route.get('/reservations', 'ReservationsController.index').middleware('AdminAuth')
+Route.get('/clientReservations', 'ReservationsController.getClientReservations')
+Route.post('/reservation', 'ReservationsController.create')
+Route.patch('/updateStatus/:id', 'ReservationsController.updateStatus')
