@@ -8,14 +8,14 @@ export default class RoomModelConfigsController {
     const page = parseInt(request.qs().page, 10)
     const limit = parseInt(request.qs().size, 10)
 
-    const rooms = await Database.from('room_model_configs')
+    const modelConfig = await Database.from('room_model_configs')
       .select('*')
       .forPage(page, limit)
       .orderBy('id', 'asc')
     const [count] = await Database.from('room_model_configs').count('* as total')
 
     return {
-      rooms,
+      modelConfig,
       total: count.total,
     }
   }

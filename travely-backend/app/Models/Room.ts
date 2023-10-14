@@ -9,22 +9,7 @@ export default class Room extends BaseModel {
   public roomNumber: number
 
   @column()
-  public capacity: number
-
-  @column()
-  public description?: string
-
-  @column()
-  public isActive: boolean
-
-  @column()
-  public chargePerDay: number
-
-  @column()
-  public hasAirConditioning: boolean
-
-  @column()
-  public hasPrivateBathroom: boolean
+  public roomModelId: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

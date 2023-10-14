@@ -5,13 +5,8 @@ export default class RoomValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    roomNumber: schema.number([rules.unsigned()]),
-    capacity: schema.number([rules.unsigned()]),
-    description: schema.string.optional([rules.trim(), rules.maxLength(250)]),
-    isActive: schema.boolean(),
-    chargePerDay: schema.number([rules.unsigned(), rules.range(0, 99999)]),
-    hasAirConditioning: schema.boolean(),
-    hasPrivateBathroom: schema.boolean(),
+    roomNumber: schema.number([rules.unsigned(), rules.required()]),
+    roomModelId: schema.number([rules.unsigned(), rules.required()]),
   })
 
   public messages: CustomMessages = {}
