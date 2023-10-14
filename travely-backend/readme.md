@@ -1,6 +1,6 @@
 ## Instruções úteis para o backend
 
-- Duplicar o arquivo **.env.test** e preenchê-lo conforme configurações da sua máquina;
+- Duplicar o arquivo **.env.example** e preenchê-lo conforme configurações da sua máquina;
   
 - Necessário ter uma instância ativa e rodando do MySQL:
   - Durante o primeiro acesso, necessário criar manualmente um *schema* chamado **travely**

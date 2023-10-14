@@ -34,3 +34,12 @@ Route.get('/bedConfigs', 'RoomConfigsController.index').middleware('AdminAuth')
 Route.post('/bedConfig', 'RoomConfigsController.create').middleware('AdminAuth')
 Route.patch('/bedConfig/:id', 'RoomConfigsController.update').middleware('AdminAuth')
 Route.get('/bedConfig/:id', 'RoomConfigsController.show').middleware('AdminAuth')
+
+Route.get('/roomModelsAdmin', 'RoomModelsController.indexAdmin').middleware('AdminAuth')
+Route.get('/roomModels', 'RoomModelsController.index')
+Route.post('/roomModel', 'RoomModelsController.create').middleware('AdminAuth')
+Route.get('/roomModel/:id', 'RoomModelsController.show')
+Route.patch('/roomModel/:id/toggleActive', 'RoomModelsController.toggleRoomActive').middleware(
+  'AdminAuth'
+)
+Route.patch('/roomModel/:id', 'RoomModelsController.update').middleware('AdminAuth')
