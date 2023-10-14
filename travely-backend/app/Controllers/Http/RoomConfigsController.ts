@@ -5,8 +5,8 @@ import RoomConfigValidator from 'App/Validators/RoomConfigValidator'
 
 export default class BedsController {
   public async index({ request }: HttpContextContract) {
-    const page = request.input('page', 1)
-    const limit = request.input('size')
+    const page = parseInt(request.qs().page, 10)
+    const limit = parseInt(request.qs().size, 10)
 
     const beds = await Database.from('room_configs')
       .forPage(page, limit)

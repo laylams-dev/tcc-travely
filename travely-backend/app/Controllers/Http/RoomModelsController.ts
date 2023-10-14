@@ -33,12 +33,11 @@ export default class RoomModelsController {
   }
 
   public async index({ request }: HttpContextContract) {
-    const page = request.input('page', 1)
-    const limit = request.input('size')
+    const page = parseInt(request.qs().page, 10)
+    const limit = parseInt(request.qs().size, 10)
     const capacity = parseInt(request.qs().capacity, 10)
 
     const hasInformedCapacity = !Number.isNaN(capacity) && capacity > 0
-    console.log('hasInformedCapacity', typeof capacity, hasInformedCapacity)
 
     const roomsModels = await Database.from('room_models')
       .select('*')
