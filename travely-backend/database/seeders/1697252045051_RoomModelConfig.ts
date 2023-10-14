@@ -3,7 +3,7 @@ import RoomModelConfig from 'App/Models/RoomModelConfig'
 
 export default class extends BaseSeeder {
   public async run() {
-    RoomModelConfig.createMany([
+    await RoomModelConfig.createMany([
       {
         roomModelId: 1,
         roomConfigId: 1,
@@ -89,6 +89,5 @@ export default class extends BaseSeeder {
         roomConfigId: 14,
       },
     ])
-    // Write your database queries inside the run method
   }
 }

@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       table.integer('room_config_id').notNullable().unsigned()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
+      table.charset('utf8mb4')
     })
 
     this.schema.alterTable(this.tableName, (table) => {
