@@ -1,7 +1,0 @@
-{
-  "root": "./travely-frontend/dist",
-  "clean_urls": true,
-  "routes": {
-    "/**": "./travely-frontend/index.html"
-  }
-}
