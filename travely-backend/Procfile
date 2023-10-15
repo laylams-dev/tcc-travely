@@ -1,2 +1,3 @@
 web: node travely-backend/build/server.js
-release: node ace migration:run --force
+release: node travely-backend/build/ace migration:run --force
+release: node travely-backend/build/ace db:seed

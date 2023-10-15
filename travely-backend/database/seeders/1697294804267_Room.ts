@@ -2,8 +2,6 @@ import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import Room from 'App/Models/Room'
 
 export default class extends BaseSeeder {
-  public static environment = ['development', 'testing']
-
   public async run() {
     await Room.createMany([
       {
