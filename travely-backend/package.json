@@ -11,7 +11,7 @@
     "start": "npm run build && node server.js",
     "test": "node ace test",
     "lint": "eslint . --ext=.ts",
-    "format": "prettier --write .",
+    "format": "prettier --write ."
   },
   "eslintConfig": {
     "extends": [
