@@ -1,1 +1,1 @@
-web: cd travely-backend && node server.js
+web: node server.js
