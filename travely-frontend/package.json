@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": "18.x",
-    "npm": "9.x"
+    "node": "18.x"
   },
   "scripts": {
     "dev": "vite",
@@ -16,12 +15,15 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "start": "node index.js"
   },
   "dependencies": {
     "ant-design-vue": "~4.0.3",
     "axios": "~1.5.1",
+    "express": "^4.18.2",
     "pinia": "~2.1.6",
+    "serve-static": "^1.15.0",
     "vue": "~3.3.4",
     "vue-router": "~4.2.4"
   },
