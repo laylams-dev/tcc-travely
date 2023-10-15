@@ -1,0 +1,1 @@
+web: cd travely-backend && node server.js
