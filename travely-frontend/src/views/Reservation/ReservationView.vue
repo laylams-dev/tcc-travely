@@ -3,9 +3,11 @@
     <a-typography-title>Faça sua reserva</a-typography-title>
 
     <a-steps label-placement="vertical" :current="currentStep" :items="stepItems" />
-
+ 
     <reservation-login-step v-if="currentStep === 0" />
-    <div v-else-if="currentStep === 1">Implementar passo 1</div>
+    <reservation-confirm-step 
+      v-else-if="currentStep === 1" 
+    />
   </the-layout>
 </template>
 
@@ -14,6 +16,7 @@ import { ref } from 'vue'
 import TheLayout from '@/components/Layout/TheLayout.vue'
 import { useUserStore } from '@/stores/userStore'
 import ReservationLoginStep from './ReservationLoginStep/ReservationLoginStep.vue'
+import ReservationConfirmStep from './ReservationConfirmStep/ReservationConfirmStep.vue'
 
 const user = useUserStore()
 

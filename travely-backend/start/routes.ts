@@ -56,3 +56,7 @@ Route.get('/reservations', 'ReservationsController.index').middleware('AdminAuth
 Route.get('/clientReservations', 'ReservationsController.getClientReservations')
 Route.post('/reservation', 'ReservationsController.create')
 Route.patch('/updateStatus/:id', 'ReservationsController.updateStatus')
+
+Route.get('/v1/participantes', 'OpbController')
+Route.post('/v1/pagamentos/pix', 'OpbController')
+Route.get('/v1/pagamentos/pix', 'OpbController')

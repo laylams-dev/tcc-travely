@@ -3,7 +3,8 @@ import HomeView from '@/views/Home/HomeView.vue'
 import LoginView from '@/views/Login/LoginView.vue'
 import CreateAccount from '@/views/CreateAccount/CreateAccountView.vue'
 import ReservationView from '@/views/Reservation/ReservationView.vue'
-import ManagementHomeView from '@/views/ManagementHome/ManagementHomeView.vue'
+import ReservationFeedback from '@/views/Reservation/ReservationFeedbackStep/ReservationFeedbackStep.vue'
+// import ManagementHomeView from '@/views/ManagementHome/ManagementHomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,10 +30,15 @@ const router = createRouter({
       component: ReservationView
     },
     {
-      path: '/administracao',
-      name: 'managementHome',
-      component: ManagementHomeView
-    }
+      path: '/confirmacao-reserva',
+      name: 'reservation-feedback',
+      component: ReservationFeedback
+    },
+    // {
+    //   path: '/administracao',
+    //   name: 'managementHome',
+    //   component: ManagementHomeView
+    // }
   ]
 })
 
