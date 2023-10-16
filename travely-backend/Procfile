@@ -1,0 +1,2 @@
+web: node travely-backend/build/server.js
+release: node travely-backend/build/ace migration:run --force

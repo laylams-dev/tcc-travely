@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/Home/HomeView.vue'
 import LoginView from '@/views/Login/LoginView.vue'
 import CreateAccount from '@/views/CreateAccount/CreateAccountView.vue'
+// import SearchRooms from '@/views/SearchRooms/SearchRoomsView.vue'
 import ReservationView from '@/views/Reservation/ReservationView.vue'
 import ReservationFeedback from '@/views/Reservation/ReservationFeedbackStep/ReservationFeedbackStep.vue'
 // import ManagementHomeView from '@/views/ManagementHome/ManagementHomeView.vue'
@@ -24,6 +25,11 @@ const router = createRouter({
       name: 'login',
       component: LoginView
     },
+    // {
+    //   path: '/encontre-seu-quarto',
+    //   name: 'searchRooms',
+    //   component: SearchRooms
+    // },
     {
       path: '/fazer-reserva',
       name: 'reservation',
