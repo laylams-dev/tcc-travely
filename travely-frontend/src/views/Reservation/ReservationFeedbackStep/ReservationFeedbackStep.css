@@ -1,0 +1,103 @@
+.feedback-container {
+    height:41rem;
+}
+   .flex-row {
+    display: flex;
+    flex-direction: row;
+   }
+   .flex-column {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.6rem;
+   }
+   .reservation-container-column {
+    width: 50%;
+   }
+   .summary-card {
+   background-color: white;
+   border-radius: 0.8rem;
+   width: 60%;
+   height: 14rem;
+   box-shadow: 1px 1px 1px #cccccc;
+   padding: 2rem;
+   }
+   .info-card {
+   background-color: white;
+   border-radius: 0.8rem;
+   width: 30%;
+   height: 32rem;
+   box-shadow: 1px 1px 1px #cccccc;
+   padding: 2rem;
+   }
+   .reservation-data-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   }
+   .reservation-item {
+     margin-top: 1rem;
+     display: flex;
+     flex-direction: column;
+     margin-inline: 2.8rem;
+     text-align: center;
+   }
+   .reservation-item-data {
+       font-size: 1rem;
+       margin-top: 0.4rem;
+   }
+   .home-welcome-carousel-img {
+     width: 50%;
+     border-radius: 0.8rem;
+   }
+   .edit-reservation-button {
+       margin-top: 2rem;
+       margin-bottom: 3rem;
+       margin-left: 9.6rem;
+       padding-inline: 5rem;
+   }
+   .accordion-closed {
+    padding-top: 0.4rem;
+    padding-inline: 2rem;
+    background-color: white;
+    border-radius: 0.4rem;
+    box-shadow: 1px 1px 1px #cccccc;
+    width: 60%;
+    margin-top: 2rem;
+    height: 3.6rem;
+    padding-top: 1rem;
+    align-items: center;
+}
+   .accordion-opened {
+    padding-top: 1rem;
+    padding-inline: 2rem;
+    background-color: white;
+    border-radius: 0.4rem;
+    box-shadow: 1px 1px 1px #cccccc;
+    width: 60%;
+    margin-top: 2rem;
+    height: 16rem;
+   }
+
+   .reservation-amount-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 2rem;
+   }
+   .mt-1 {
+    margin-top: 1rem;
+   }
+   .mt-2 {
+    margin-top: 2rem;
+   }
+   .feedback-card {
+    background-color: white;
+    border-radius: 0.8rem;
+    width: 50%;
+    height: 32rem;
+    box-shadow: 1px 1px 1px #cccccc;
+    padding: 2rem;
+ }
+ .text-muted {
+    color: gray;
+ }
