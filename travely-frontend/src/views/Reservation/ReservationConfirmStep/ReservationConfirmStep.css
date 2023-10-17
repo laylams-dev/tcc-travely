@@ -19,7 +19,7 @@
    .summary-card {
    background-color: white;
    border-radius: 0.8rem;
-   width: 60%;
+   width: 40vw;
    height: 14rem;
    box-shadow: 1px 1px 1px #cccccc;
    padding: 2rem;
@@ -64,7 +64,7 @@
     background-color: white;
     border-radius: 0.4rem;
     box-shadow: 1px 1px 1px #cccccc;
-    width: 60%;
+    width: 40vw;
     margin-top: 2rem;
     height: 3.6rem;
     padding-top: 1rem;
@@ -76,7 +76,7 @@
     background-color: white;
     border-radius: 0.4rem;
     box-shadow: 1px 1px 1px #cccccc;
-    width: 60%;
+    width: 40vw;
     margin-top: 2rem;
     height: 16rem;
    }
@@ -94,11 +94,3 @@
    .mt-2 {
     margin-top: 2rem;
    }
-   .feedback-card {
-    background-color: white;
-    border-radius: 0.8rem;
-    width: 70%;
-    height: 32rem;
-    box-shadow: 1px 1px 1px #cccccc;
-    padding: 2rem;
- }

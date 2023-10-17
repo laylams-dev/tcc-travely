@@ -79,19 +79,6 @@
                 </a-space>
             </div>
         </div>
-        <!-- <div :class="isBilletMethodOpen ? 'accordion-opened' : 'accordion-closed'">
-            <div class='reservation-data-row' >
-                <h3>Boleto bancário</h3>
-                <Tooltip title="Expandir informações">
-                    <Button 
-                        type="dashed" 
-                        shape="circle" 
-                        :icon="h(CaretDownOutlined)" 
-                        @click="openPaymentMethodAccordion('billet')"
-                    />
-                </Tooltip>
-            </div>
-        </div> -->
         <div :class="isPixOpbMethodOpen ? 'accordion-opened' : 'accordion-closed'">
             <div class='reservation-data-row'>
             <h3>Pix via Open Finance</h3>
@@ -119,14 +106,14 @@
                     ref="select"
                     v-model:value="selectedBankOption"
                     placeholder="Selecione..."
-                    style="width: 29.4rem;"
+                    style="width: 34vw"
                     @focus="focus"
                     @change="handleChange"
                     >
                         <a-select-option value="jack">Efí Pay</a-select-option>
                     </a-select>
                     <a-button 
-                        style="margin-left: 23rem; 
+                        style="margin-left: 28vw; 
                         margin-top: 0.4rem;" 
                         :disabled="!customerCPF || !selectedBankOption"
                         type="primary"
@@ -159,21 +146,21 @@
             <span class="mt-1">Taxa de serviço</span>
         </div>
         <div class="flex-column">
-            <strong>R$ 1.240,00</strong>
-            <strong class="mt-1">R$ 179,00</strong>
+            <strong>R$ {{ subtotal }}</strong>
+            <strong class="mt-1">R$ {{ admTax }}</strong>
         </div>
         </div>
         <a-divider class="mt-2" />
         <div class="reservation-amount-row">
             <h3>Total</h3>
-            <h3>R$ 1.419,00</h3>
+            <h3>R$ {{ totalAmount }},00</h3>
         </div>
         </div>
     </div>
 </div>
 </template>
 <script setup lang="ts">
-import { ref, h } from 'vue'
+import { ref, h, computed } from 'vue'
 import Room1 from '@/assets/public/quarto-1.jpg'
 import { Button, Tooltip } from 'ant-design-vue';
 import { CaretDownOutlined } from '@ant-design/icons-vue'
@@ -288,9 +275,23 @@ const goToHome = () => {
     })
 };
 
+const roomValue = ref(620);
+const admTax = ref('179,00');
+const subtotal = ref(`${daysOnReserve * roomValue.value},00`);
+
+const totalAmount = computed(()=> {
+const total = parseInt(subtotal.value) + parseInt(admTax.value);
+return `${total}`;
+});
+
 const goToFeedback = () => {
+    window.open('https://app.sejaefi.com.br/pix/fazer-pix');
     router.push({
-      name: 'reservation-feedback'
+      name: 'reservation-feedback',
+      query: {
+        subtotal: subtotal.value,
+        totalAmount: totalAmount.value,
+      }
     })
 }
 

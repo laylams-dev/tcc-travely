@@ -25,14 +25,14 @@
                         <span class="mt-1">Taxa de serviço</span>
                     </div>
                     <div class="flex-column">
-                        <strong>R$ 1.240,00</strong>
+                        <strong>R$ {{ subtotal }}</strong>
                         <strong class="mt-1">R$ 179,00</strong>
                     </div>
                     </div>
                     <a-divider class="mt-2" />
                     <div class="reservation-amount-row">
                         <h2>Total</h2>
-                        <h2>R$ 1.419,00</h2>
+                        <h2>R$ {{ totalAmount }}</h2>
                     </div>
                 </div>
                 </div>
@@ -65,7 +65,7 @@
 </the-layout>
 </template>
 <script setup lang="ts">
-import { ref, h } from 'vue'
+import { ref, computed } from 'vue'
 import TheLayout from '@/components/Layout/TheLayout.vue'
 import Room1 from '@/assets/public/quarto-1.jpg'
 import { CheckCircleTwoTone, CheckOutlined } from '@ant-design/icons-vue';
@@ -93,5 +93,21 @@ const goToHome = () => {
       name: 'home'
     })
 };
+
+function getDay(dataString: string): number {
+  const dateParts = dataString.split('/');
+  if (dateParts.length === 3) {
+    const day = parseInt(dateParts[0]);
+    return day;
+  } else {
+    return 0;
+  }
+};
+
+const daysOnReserve: number = Number(getDay(formatedDateTo.value) - Number(getDay(formatedDateFrom.value)));
+
+const subtotal = computed(() => router.currentRoute.query?.subtotal || '4340,00');
+const totalAmount = computed(() => router.currentRoute.query?.totalAmount || '4519,00');
+
 </script>
 <style scoped src="./ReservationFeedbackStep.css" />
